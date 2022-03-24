@@ -35,7 +35,7 @@ public class UserController extends BaseController {
         return doCall(() -> service.findByUsername(username));
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createUser(@RequestBody final UserDto user) {
         return doCall(() -> service.create(user));
     }

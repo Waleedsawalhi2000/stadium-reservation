@@ -1,12 +1,15 @@
 package org.car.dto;
 
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 @MappedSuperclass
 public class BaseDto<ID extends Serializable> {

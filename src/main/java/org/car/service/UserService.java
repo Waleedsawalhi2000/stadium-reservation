@@ -7,6 +7,8 @@ import org.car.repository.UserRepository;
 import org.car.util.PasswordUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class UserService extends AbstractService<User, UserDto, Integer> {
@@ -18,10 +20,20 @@ public class UserService extends AbstractService<User, UserDto, Integer> {
     }
 
     @Override
-    public User update(final UserDto dto,
-                       final Integer integer) {
+    public User create(final UserDto dto) {
+        dto.setPassword(PasswordUtil.encode(dto.getPassword()));
+        return super.create(dto);
+    }
 
-        return super.update(dto, integer);
+    @Override
+    public User update(final UserDto dto,
+                       final Integer id) {
+        final Optional<User> user = repository.findById(id);
+        if (passwordCompare(user.get().getPassword(), dto.getPassword())) {
+            return super.update(dto, id);
+        }
+        dto.setPassword(PasswordUtil.encode(dto.getPassword()));
+        return super.update(dto, id);
     }
 
     public UserDto findByUsername(final String userName) {
