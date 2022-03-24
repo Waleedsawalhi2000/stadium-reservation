@@ -1,5 +1,6 @@
 package org.car.util;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class PasswordUtil {
@@ -12,5 +13,9 @@ public class PasswordUtil {
 
     public static boolean compare(final String password, final String encryptedPassword) {
         return password.equals(encryptedPassword) || encoder.matches(password, encryptedPassword);
+    }
+
+    public static String decode(final String encryptedPassword) {
+        return null;
     }
 }

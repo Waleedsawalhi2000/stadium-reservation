@@ -11,8 +11,9 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .id(userDto.getId())
                 .username(userDto.getUsername())
                 .password(userDto.getPassword())
-                .active(userDto.isActive())
+                .active(userDto.getActive())
                 .roles(userDto.getRoles())
+                .email(userDto.getEmail())
                 .build();
     }
 
@@ -25,6 +26,7 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .username(user.getUsername())
                 .roles(user.getRoles())
                 .password(user.getPassword())
+                .email(user.getEmail())
                 .build();
     }
 }
