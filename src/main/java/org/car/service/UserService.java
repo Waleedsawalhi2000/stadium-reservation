@@ -1,7 +1,7 @@
 package org.car.service;
 
 import org.car.entity.User;
-import org.car.entity.UserDto;
+import org.car.dto.UserDto;
 import org.car.mapper.UserMapper;
 import org.car.repository.UserRepository;
 import org.car.util.PasswordUtil;

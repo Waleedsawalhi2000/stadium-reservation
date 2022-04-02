@@ -2,7 +2,7 @@ package org.car.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.car.controller.base.BaseController;
-import org.car.entity.UserDto;
+import org.car.dto.UserDto;
 import org.car.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ public class UserController extends BaseController {
         return doCall(() -> service.findByUsername(username));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody final UserDto user) {
         return doCall(() -> service.create(user));
     }

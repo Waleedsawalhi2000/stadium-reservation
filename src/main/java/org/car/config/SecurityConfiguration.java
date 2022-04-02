@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -31,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/user").antMatchers(HttpMethod.POST);
+        web.ignoring().antMatchers("/api/user/create").antMatchers(HttpMethod.POST);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout", "POST"))
+                .logoutUrl("/api/logout")
                 .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
