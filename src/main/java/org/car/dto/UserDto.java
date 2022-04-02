@@ -1,8 +1,7 @@
-package org.car.entity;
+package org.car.dto;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.car.dto.BaseDto;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,4 +14,8 @@ public class UserDto extends BaseDto<Integer> {
     private String password;
     private Boolean active;
     private String roles;
+    private String userId;
+    private String phoneNumber;
+    private String firstname;
+    private String lastname;
 }

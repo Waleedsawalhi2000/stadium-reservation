@@ -1,7 +1,7 @@
 package org.car.mapper;
 
 import org.car.entity.User;
-import org.car.entity.UserDto;
+import org.car.dto.UserDto;
 
 public class UserMapper extends AbstractMapper<User, UserDto> {
     @Override
@@ -14,6 +14,10 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .active(userDto.getActive())
                 .roles(userDto.getRoles())
                 .email(userDto.getEmail())
+                .userId(userDto.getUserId())
+                .phoneNumber(userDto.getPhoneNumber())
+                .firstname(userDto.getFirstname())
+                .lastname(userDto.getLastname())
                 .build();
     }
 
@@ -27,6 +31,10 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .roles(user.getRoles())
                 .password(user.getPassword())
                 .email(user.getEmail())
+                .lastname(user.getLastname())
+                .firstname(user.getFirstname())
+                .phoneNumber(user.getPhoneNumber())
+                .userId(user.getUserId())
                 .build();
     }
 }
