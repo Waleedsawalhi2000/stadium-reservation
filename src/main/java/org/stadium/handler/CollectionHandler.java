@@ -16,11 +16,7 @@ public class CollectionHandler implements ApiHandler {
                                              final HttpStatus httpStatus) {
         return initResponse(httpStatus)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(convertListToPage((Collection) obj));
-    }
-
-    private Page convertListToPage(final Collection collection) {
-        return new PageImpl(convertCollectionToList(collection));
+                .body(convertCollectionToList((Collection) obj));
     }
 
     private List convertCollectionToList(final Collection collection) {

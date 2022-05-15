@@ -1,5 +1,7 @@
 package org.stadium.service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.stadium.dto.UserDto;
 import org.stadium.entity.User;
@@ -17,6 +19,10 @@ public class UserService extends AbstractService<User, UserDto, Integer> {
     public UserService(final UserRepository repository) {
         super(new UserMapper(), repository);
         this.repository = repository;
+    }
+
+    public UserDto getLoggedInUser() {
+        return loggedInUser();
     }
 
     @Override
@@ -48,5 +54,14 @@ public class UserService extends AbstractService<User, UserDto, Integer> {
 
     private boolean passwordCompare(final String password, final String ePassword) {
         return PasswordUtil.compare(password, ePassword);
+    }
+
+    private UserDto loggedInUser() {
+        final Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = null;
+        if (obj instanceof UserDetails) {
+            username = ((UserDetails) obj).getUsername();
+        }
+        return mapper.toDto(repository.findUserByUserName(username));
     }
 }

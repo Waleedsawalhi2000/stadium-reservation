@@ -3,8 +3,8 @@ package org.stadium.controller;
 import lombok.RequiredArgsConstructor;
 import org.stadium.controller.base.BaseController;
 import org.stadium.dto.UserDto;
+import org.stadium.service.EmailService;
 import org.stadium.service.UserService;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,43 +12,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController extends BaseController {
-    private final UserService service;
+    private final UserService userService;
+    private final EmailService emailService;
 
     @GetMapping
-    public ResponseEntity<?> getUsers(@RequestParam final Integer page,
-                                      @RequestParam final Integer size) {
-        return doCall(() -> service.findAll(PageRequest.of(page, size)));
+    public ResponseEntity<?> getUsers() {
+        return doCall(userService::getLoggedInUser);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable final Integer id) {
-        return doCall(() -> service.findById(id));
-    }
-
-    @GetMapping("/email")
-    public ResponseEntity<?> getUserByEmail(@RequestParam final String email) {
-        return doCall(() -> service.findByEmail(email));
-    }
-
-    @GetMapping("/username")
-    public ResponseEntity<?> getUserByUsername(@RequestParam final String username) {
-        return doCall(() -> service.findByUsername(username));
+    @PutMapping()
+    public ResponseEntity<?> updateLoggedInUser(@RequestBody final UserDto userDto) {
+        return doCall(() -> userService.update(userDto, userService.getLoggedInUser().getId()));
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody final UserDto user) {
-        return doCall(() -> service.create(user));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable final Integer id,
-                                        @RequestBody final UserDto user) {
-        return doCall(() -> service.update(user, id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable final Integer id) {
-        return doCall(() -> service.delete(id));
+        return doCall(() -> userService.create(user));
     }
 
 }
