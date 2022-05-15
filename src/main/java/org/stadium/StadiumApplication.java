@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CarApplication {
+public class StadiumApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CarApplication.class);
+        SpringApplication.run(StadiumApplication.class);
     }
 }

@@ -30,7 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/user/create").antMatchers(HttpMethod.POST);
+        web
+                .ignoring()
+                .antMatchers("/api/user/create", "/api/forget-password/**", "/api/email")
+                .antMatchers(HttpMethod.POST);
     }
 
     @Override
