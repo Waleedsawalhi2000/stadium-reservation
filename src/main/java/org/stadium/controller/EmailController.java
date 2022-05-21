@@ -14,8 +14,13 @@ import org.stadium.service.EmailService;
 public class EmailController extends BaseController {
     private final EmailService service;
 
-    @PostMapping()
-    public ResponseEntity<?> sendVerificationCode(@RequestParam final String email) {
+    @PostMapping("/change-password")
+    public ResponseEntity<?> sendPasswordVerificationCode(@RequestParam final String email) {
         return doCall(() -> service.sendPasswordToEmail(email));
+    }
+
+    @PostMapping("/verify")
+    public ResponseEntity<?> sendEmailVerificationCode(@RequestParam final String email) {
+        return doCall(() -> service.sendEmailVerificationCode(email));
     }
 }

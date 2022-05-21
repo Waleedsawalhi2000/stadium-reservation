@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController extends BaseController {
     private final UserService userService;
-    private final EmailService emailService;
 
     @GetMapping
     public ResponseEntity<?> getUsers() {
@@ -30,4 +29,9 @@ public class UserController extends BaseController {
         return doCall(() -> userService.create(user));
     }
 
+    @PutMapping("/verify/{code}")
+    public ResponseEntity<?> verifyEmail(@PathVariable final Integer code,
+                                         @RequestParam final String email) {
+        return doCall(() -> userService.verifyAccount(email, code));
+    }
 }

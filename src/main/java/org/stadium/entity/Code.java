@@ -10,13 +10,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "scheduler")
+@Table(name = "code")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Scheduler extends BaseEntity<Integer> {
+public class Code extends BaseEntity<Integer> {
     @Column(nullable = false)
     private Integer value;
     @JoinColumn(referencedColumnName = "id", nullable = false)

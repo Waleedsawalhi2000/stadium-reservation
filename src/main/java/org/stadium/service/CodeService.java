@@ -7,43 +7,42 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.stadium.dto.SchedulerDto;
-import org.stadium.entity.Scheduler;
+import org.stadium.dto.CodeDto;
+import org.stadium.entity.Code;
 import org.stadium.entity.User;
-import org.stadium.mapper.SchedulerMapper;
+import org.stadium.mapper.CodeMapper;
 import org.stadium.mapper.UserMapper;
-import org.stadium.repository.SchedulerRepository;
+import org.stadium.repository.CodeRepsotiroy;
 import org.stadium.repository.UserRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 
 @EnableScheduling
 @Service
-public class SchedulerService extends AbstractService<Scheduler, SchedulerDto, Integer> {
+public class CodeService extends AbstractService<Code, CodeDto, Integer> {
     @Autowired
     private UserRepository repository;
     @Autowired
-    private SchedulerRepository scheduler;
+    private CodeRepsotiroy scheduler;
 
-    public SchedulerService(SchedulerRepository repository) {
-        super(new SchedulerMapper(), repository);
+    public CodeService(CodeRepsotiroy repository) {
+        super(new CodeMapper(), repository);
     }
 
-    public Scheduler create(final String email) {
+    public Code create(final String email) {
         final User user = repository.findUserByEmail(email);
         if (user == null) {
             throw new IllegalStateException("This email doesn't found");
         }
-        final Scheduler res = scheduler.findSchedulerByUserEmail(email);
+        final Code res = scheduler.findSchedulerByUserEmail(email);
         if (res != null) {
             return res;
         }
-        final SchedulerDto dto = SchedulerDto
+        final CodeDto dto = CodeDto
                 .builder()
                 .timestamp(Timestamp.valueOf(LocalDateTime.now()))
                 .value(Integer.parseInt(getRandomNumberString()))
@@ -58,23 +57,23 @@ public class SchedulerService extends AbstractService<Scheduler, SchedulerDto, I
     }
 
     @Override
-    public Scheduler update(final SchedulerDto dto,
-                            final Integer integer) {
+    public Code update(final CodeDto dto,
+                       final Integer integer) {
         throw new IllegalStateException("This method isn't supported for this feature");
     }
 
     @Override
-    public List<SchedulerDto> findAll() {
+    public List<CodeDto> findAll() {
         throw new IllegalStateException("This method isn't supported for this feature");
     }
 
     @Override
-    public Page<SchedulerDto> findAll(final Pageable pageable) {
+    public Page<CodeDto> findAll(final Pageable pageable) {
         throw new IllegalStateException("This method isn't supported for this feature");
     }
 
     @Override
-    public SchedulerDto findById(final Integer integer) {
+    public CodeDto findById(final Integer integer) {
         throw new IllegalStateException("This method isn't supported for this feature");
     }
 
@@ -83,8 +82,8 @@ public class SchedulerService extends AbstractService<Scheduler, SchedulerDto, I
         return true;
     }
 
-    public SchedulerDto findCodeBy(final String email) {
-        final Scheduler ticket = scheduler.findSchedulerByUserEmail(email);
+    public CodeDto findCodeBy(final String email) {
+        final Code ticket = scheduler.findSchedulerByUserEmail(email);
         return ticket != null ? mapper.toDto(ticket) : null;
     }
 

@@ -14,10 +14,11 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .active(userDto.getActive())
                 .roles(userDto.getRoles())
                 .email(userDto.getEmail())
-                .userId(userDto.getUserId())
                 .phoneNumber(userDto.getPhoneNumber())
                 .firstname(userDto.getFirstname())
                 .lastname(userDto.getLastname())
+                .verified(userDto.getVerified())
+                .stadiums(new StadiumMapper().toEntities(userDto.getStadiums()))
                 .build();
     }
 
@@ -34,7 +35,8 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .lastname(user.getLastname())
                 .firstname(user.getFirstname())
                 .phoneNumber(user.getPhoneNumber())
-                .userId(user.getUserId())
+                .verified(user.getVerified())
+                .stadiums(new StadiumMapper().toDtos(user.getStadiums()))
                 .build();
     }
 }

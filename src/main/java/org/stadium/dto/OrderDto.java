@@ -1,5 +1,6 @@
 package org.stadium.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class SchedulerDto extends BaseDto<Integer>  {
-    private Integer value;
-    private UserDto userDto;
-    private Timestamp timestamp;
+public class OrderDto extends BaseDto<Integer> {
+    private UserDto user;
+    private StadiumDto stadium;
+    private Timestamp started;
+    private Timestamp ended;
+    private Integer totalPrice;
+    private PaymentMethod paymentMethod;
 }

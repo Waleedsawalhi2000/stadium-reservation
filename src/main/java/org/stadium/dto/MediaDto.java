@@ -15,4 +15,5 @@ import lombok.experimental.SuperBuilder;
 public class MediaDto extends BaseDto<Integer> {
     private Byte[] image;
     private String name;
+    private String uri;
 }

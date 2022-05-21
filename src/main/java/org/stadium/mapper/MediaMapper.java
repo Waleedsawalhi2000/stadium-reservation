@@ -11,6 +11,7 @@ public class MediaMapper extends AbstractMapper<Media, MediaDto> {
                 .id(mediaDto.getId())
                 .image(mediaDto.getImage())
                 .name(mediaDto.getName())
+                .uri(mediaDto.getUri())
                 .build();
     }
 
@@ -21,6 +22,7 @@ public class MediaMapper extends AbstractMapper<Media, MediaDto> {
                 .id(media.getId())
                 .image(media.getImage())
                 .name(media.getName())
+                .uri(media.getUri())
                 .build();
     }
 }

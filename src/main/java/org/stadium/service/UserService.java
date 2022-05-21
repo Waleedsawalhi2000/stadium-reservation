@@ -1,8 +1,10 @@
 package org.stadium.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.stadium.dto.CodeDto;
 import org.stadium.dto.UserDto;
 import org.stadium.entity.User;
 import org.stadium.mapper.UserMapper;
@@ -15,6 +17,9 @@ import java.util.Optional;
 @Service
 public class UserService extends AbstractService<User, UserDto, Integer> {
     private final UserRepository repository;
+
+    @Autowired
+    private CodeService codeService;
 
     public UserService(final UserRepository repository) {
         super(new UserMapper(), repository);
@@ -50,6 +55,22 @@ public class UserService extends AbstractService<User, UserDto, Integer> {
     public UserDto findByEmail(final String email) {
         final User user = repository.findUserByEmail(email);
         return mapper.toDto(user);
+    }
+
+    public Boolean verifyAccount(final String email,
+                                 final Integer code) {
+        final UserDto user = this.findByEmail(email);
+        if (user == null) {
+            throw new IllegalStateException("This email doesn't found.");
+        }
+        final CodeDto scheduler = codeService.findCodeBy(email);
+        if (scheduler != null && scheduler.getValue().equals(code)) {
+            user.setVerified(true);
+            this.update(user, user.getId());
+            codeService.deleteByCode(code);
+            return true;
+        }
+        return false;
     }
 
     private boolean passwordCompare(final String password, final String ePassword) {

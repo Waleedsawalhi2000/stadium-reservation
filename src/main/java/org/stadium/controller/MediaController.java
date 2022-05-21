@@ -19,8 +19,8 @@ public class MediaController extends BaseController {
         return doCall(() -> service.create(image, filename));
     }
 
-    @GetMapping()
-    public ResponseEntity<?> getImage(@RequestParam final String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<?> getImage(@PathVariable final String name) {
         return doCall(() -> service.getImage(name));
     }
 

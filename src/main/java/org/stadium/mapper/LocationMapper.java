@@ -8,6 +8,7 @@ public class LocationMapper extends AbstractMapper<Location, LocationDto> {
     public Location toEntity(final LocationDto locationDto) {
         return Location
                 .builder()
+                .id(locationDto.getId())
                 .city(locationDto.getCity())
                 .name(locationDto.getName())
                 .street(locationDto.getStreet())
@@ -18,6 +19,7 @@ public class LocationMapper extends AbstractMapper<Location, LocationDto> {
     public LocationDto toDto(final Location location) {
         return LocationDto
                 .builder()
+                .id(location.getId())
                 .city(location.getCity())
                 .street(location.getStreet())
                 .name(location.getName())
