@@ -25,4 +25,9 @@ public class StadiumService extends AbstractService<Stadium, StadiumDto, Integer
         final Integer min = minPrice != null ? minPrice : 0;
         return mapper.toDtos(repository.findAll(location, min, max));
     }
+
+    public Stadium create(final StadiumDto dto) {
+        final Stadium stadium = new StadiumMapper().toEntity(dto);
+        return repository.save(stadium);
+    }
 }

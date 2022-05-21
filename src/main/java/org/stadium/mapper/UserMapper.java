@@ -6,7 +6,7 @@ import org.stadium.dto.UserDto;
 public class UserMapper extends AbstractMapper<User, UserDto> {
     @Override
     public User toEntity(final UserDto userDto) {
-        return User
+        return userDto == null ? null : User
                 .builder()
                 .id(userDto.getId())
                 .username(userDto.getUsername())
@@ -18,16 +18,18 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .firstname(userDto.getFirstname())
                 .lastname(userDto.getLastname())
                 .verified(userDto.getVerified())
+                .userId(userDto.getUserId())
                 .stadiums(new StadiumMapper().toEntities(userDto.getStadiums()))
                 .build();
     }
 
     @Override
     public UserDto toDto(final User user) {
-        return UserDto
+        return user == null ? null : UserDto
                 .builder()
                 .id(user.getId())
-                .active(user.isActive())
+                .userId(user.getUserId())
+                .active(user.getActive())
                 .username(user.getUsername())
                 .roles(user.getRoles())
                 .password(user.getPassword())

@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "stadium")
@@ -30,7 +32,9 @@ public class Stadium extends BaseEntity<Integer> {
     @JoinColumn(referencedColumnName = "id")
     @OneToOne
     private Media image;
-    @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "admin_stadium")
+    @ManyToOne(cascade = CascadeType.ALL)
     private User admin;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Request> requests = new ArrayList<>();
 }

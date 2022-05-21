@@ -3,14 +3,13 @@ package org.stadium.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"phoneNumber", "username", "email"})})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"phoneNumber", "username", "email", "userId"})})
 @Setter
 @Getter
 @AllArgsConstructor
@@ -23,7 +22,10 @@ public class User extends BaseEntity<Integer> {
     private String username;
     @Column(nullable = false)
     private String password;
-    private boolean active;
+    @Column(nullable = false)
+    private String userId;
+    @Column
+    private Boolean active;
     private String roles;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
@@ -33,16 +35,11 @@ public class User extends BaseEntity<Integer> {
     private String lastname;
     @Column(nullable = false)
     private Boolean verified;
-    @JoinColumn(referencedColumnName = "id")
-    @OneToMany()
-    private List<Stadium> stadiums;
-    @JoinColumn(referencedColumnName = "id")
-    @OneToMany()
-    private List<Order> orders;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    private List<Stadium> stadiums = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Request> requests = new ArrayList<>();
 
-    public void setOrders(final List<Order> orders) {
-        this.orders = roles.contains("USER") ? orders : null;
-    }
 
     public void setStadiums(final List<Stadium> stadiums) {
         this.stadiums = roles.contains("ADMIN") ? stadiums : null;

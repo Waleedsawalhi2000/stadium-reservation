@@ -6,7 +6,7 @@ import org.stadium.entity.Location;
 public class LocationMapper extends AbstractMapper<Location, LocationDto> {
     @Override
     public Location toEntity(final LocationDto locationDto) {
-        return Location
+        return locationDto == null ? null : Location
                 .builder()
                 .id(locationDto.getId())
                 .city(locationDto.getCity())
@@ -17,7 +17,7 @@ public class LocationMapper extends AbstractMapper<Location, LocationDto> {
 
     @Override
     public LocationDto toDto(final Location location) {
-        return LocationDto
+        return location == null ? null : LocationDto
                 .builder()
                 .id(location.getId())
                 .city(location.getCity())

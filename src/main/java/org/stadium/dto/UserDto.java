@@ -2,7 +2,6 @@ package org.stadium.dto;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class UserDto extends BaseDto<Integer> {
     private String email;
     private String username;
     private String password;
+    private String userId;
     private Boolean active;
     private String roles;
     private String phoneNumber;
@@ -22,5 +22,5 @@ public class UserDto extends BaseDto<Integer> {
     private String lastname;
     private Boolean verified;
     private List<StadiumDto> stadiums;
-    private List<OrderDto> orders;
+    private List<RequestDto> orders;
 }

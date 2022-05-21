@@ -27,7 +27,7 @@ public class UserDetailsDto implements UserDetails {
         final User user = userRepository.findUserByUserName(username);
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.active = user.isActive();
+        this.active = user.getActive();
         this.authorities = Arrays.stream(user.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());

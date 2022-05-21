@@ -19,4 +19,5 @@ public class StadiumDto extends BaseDto<Integer> {
     private String size;
     private MediaDto image;
     private UserDto admin;
+    private String stadiumId;
 }

@@ -26,12 +26,12 @@ public class StadiumController extends BaseController {
         return doCall(() -> service.findById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createStadium(@RequestBody final StadiumDto dto) {
         return doCall(() -> service.create(dto));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateStadium(@PathVariable final Integer id,
                                            @RequestBody final StadiumDto dto) {
         return doCall(() -> service.update(dto, id));

@@ -14,11 +14,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class OrderDto extends BaseDto<Integer> {
+public class RequestDto extends BaseDto<Integer> {
     private UserDto user;
     private StadiumDto stadium;
     private Timestamp started;
     private Timestamp ended;
     private Integer totalPrice;
-    private PaymentMethod paymentMethod;
+    private String paymentMethod;
 }
