@@ -1,8 +1,11 @@
 package org.stadium.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,13 +38,21 @@ public class User extends BaseEntity<Integer> {
     private String lastname;
     @Column(nullable = false)
     private Boolean verified;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "admin")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Stadium> stadiums = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Request> requests = new ArrayList<>();
 
 
-    public void setStadiums(final List<Stadium> stadiums) {
+    public User setStadiums(final List<Stadium> stadiums) {
         this.stadiums = roles.contains("ADMIN") ? stadiums : null;
+        return this;
+    }
+
+    public User setRequests(final List<Request> requests) {
+        this.requests = requests;
+        return this;
     }
 }

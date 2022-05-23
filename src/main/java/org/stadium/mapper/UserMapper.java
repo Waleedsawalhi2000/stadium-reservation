@@ -20,6 +20,7 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .verified(userDto.getVerified())
                 .userId(userDto.getUserId())
                 .stadiums(new StadiumMapper().toEntities(userDto.getStadiums()))
+                .requests(new RequestMapper().toEntities(userDto.getRequests()))
                 .build();
     }
 
@@ -39,6 +40,7 @@ public class UserMapper extends AbstractMapper<User, UserDto> {
                 .phoneNumber(user.getPhoneNumber())
                 .verified(user.getVerified())
                 .stadiums(new StadiumMapper().toDtos(user.getStadiums()))
+                .requests(new RequestMapper().toDtos(user.getRequests()))
                 .build();
     }
 }

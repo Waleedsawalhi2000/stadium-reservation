@@ -9,10 +9,10 @@ public abstract class AbstractMapper<ENTITY, DTO> {
     public abstract DTO toDto(final ENTITY entity);
 
     public List<DTO> toDtos(final List<ENTITY> entities) {
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
+        return entities == null ? null : entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     public List<ENTITY> toEntities(final List<DTO> dtos) {
-        return dtos.stream().map(this::toEntity).collect(Collectors.toList());
+        return dtos == null ? null : dtos.stream().map(this::toEntity).collect(Collectors.toList());
     }
 }

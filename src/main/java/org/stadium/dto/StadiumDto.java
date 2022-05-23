@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -20,4 +22,5 @@ public class StadiumDto extends BaseDto<Integer> {
     private MediaDto image;
     private UserDto admin;
     private String stadiumId;
+    private List<RequestDto> requests;
 }

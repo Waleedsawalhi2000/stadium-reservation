@@ -27,7 +27,7 @@ public class StadiumService extends AbstractService<Stadium, StadiumDto, Integer
     }
 
     public Stadium create(final StadiumDto dto) {
-        final Stadium stadium = new StadiumMapper().toEntity(dto);
-        return repository.save(stadium);
+        final Stadium stadium = mapper.toEntity(dto);
+        return repository.save(mapper.toEntity(dto));
     }
 }

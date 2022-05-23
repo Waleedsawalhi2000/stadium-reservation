@@ -8,27 +8,27 @@ import org.stadium.entity.Request;
 public class RequestMapper extends AbstractMapper<Request, RequestDto> {
     @Override
     public Request toEntity(RequestDto requestDto) {
-        return Request
+        return requestDto == null ? null : Request
                 .builder()
                 .id(requestDto.getId())
-//                .user(new UserMapper().toEntity(orderDto.getUser()))
-//                .stadium(new StadiumMapper().toEntity(orderDto.getStadium()))
-//                .started(orderDto.getStarted())
-//                .ended(orderDto.getEnded())
-//                .paymentMethod(orderDto.getPaymentMethod())
+                .user(new UserMapper().toEntity(requestDto.getUser()))
+                .stadium(new StadiumMapper().toEntity(requestDto.getStadium()))
+                .started(requestDto.getStarted())
+                .ended(requestDto.getEnded())
+                .paymentMethod(requestDto.getPaymentMethod())
                 .build();
     }
 
     @Override
     public RequestDto toDto(Request request) {
-        return RequestDto
+        return request == null ? null : RequestDto
                 .builder()
                 .id(request.getId())
-//                .user(new UserMapper().toDto(order.getUser()))
-//                .stadium(new StadiumMapper().toDto(order.getStadium()))
-//                .started(order.getStarted())
-//                .ended(order.getEnded())
-//                .paymentMethod(order.getPaymentMethod())
+                .user(new UserMapper().toDto(request.getUser().setStadiums(null).setRequests(null)))
+                .stadium(new StadiumMapper().toDto(request.getStadium()))
+                .started(request.getStarted())
+                .ended(request.getEnded())
+                .paymentMethod(request.getPaymentMethod())
                 .build();
     }
 }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,8 +35,9 @@ public class Stadium extends BaseEntity<Integer> {
     @OneToOne
     private Media image;
     @JoinTable(name = "admin_stadium")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private User admin;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "stadium")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Request> requests = new ArrayList<>();
 }

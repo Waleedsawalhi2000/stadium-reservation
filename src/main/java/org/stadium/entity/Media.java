@@ -1,5 +1,6 @@
 package org.stadium.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ import java.net.URLEncoder;
 public class Media extends BaseEntity<Integer> {
     @Lob
     @Column(nullable = false)
+    @JsonIgnore
     private Byte[] image;
     @Column
     private String name;

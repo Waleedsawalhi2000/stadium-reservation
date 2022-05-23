@@ -1,5 +1,6 @@
 package org.stadium.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @SuperBuilder
 @MappedSuperclass
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseDto<ID extends Serializable> {
     private ID id;
 }

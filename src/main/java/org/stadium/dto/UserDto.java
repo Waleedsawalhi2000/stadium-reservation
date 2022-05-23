@@ -22,5 +22,5 @@ public class UserDto extends BaseDto<Integer> {
     private String lastname;
     private Boolean verified;
     private List<StadiumDto> stadiums;
-    private List<RequestDto> orders;
+    private List<RequestDto> requests;
 }

@@ -19,12 +19,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @SuperBuilder
 public class Request extends BaseEntity<Integer> {
-    private String name;
     @JoinTable(name = "user_request")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private User user;
     @JoinTable(name = "stadium_request")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Stadium stadium;
     @Column
     private Timestamp started;
@@ -34,11 +33,10 @@ public class Request extends BaseEntity<Integer> {
     private String paymentMethod;
     @Column
     private Boolean status;
-    @Transient
-    private PaymentMethod payMethod;
 
 
-    public void setPaymentMethod(final String paymentMethod) {
-        this.paymentMethod = PaymentMethod.getPaymentMethod(payMethod);
+    public Request setStadium(final Stadium  stadium) {
+        this.stadium = stadium;
+        return this;
     }
 }
