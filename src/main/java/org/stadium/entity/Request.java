@@ -31,8 +31,6 @@ public class Request extends BaseEntity<Integer> {
     private Timestamp ended;
     @Column
     private String paymentMethod;
-    @Column
-    private Boolean status;
 
 
     public Request setStadium(final Stadium  stadium) {
