@@ -27,7 +27,7 @@ public class Media extends BaseEntity<Integer> {
     @Column(nullable = false)
     @JsonIgnore
     private Byte[] image;
-    @Column
+    @Column(nullable = false)
     private String name;
     @Transient
     private String uri;
