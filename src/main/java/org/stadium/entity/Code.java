@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "code")
+@Table(name = "verification_code")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -22,6 +22,6 @@ public class Code extends BaseEntity<Integer> {
     @JoinColumn(referencedColumnName = "id", nullable = false)
     @OneToOne
     private User user;
-    @Column
+    @Column(nullable = false)
     private Timestamp timestamp;
 }

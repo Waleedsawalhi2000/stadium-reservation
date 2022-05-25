@@ -19,10 +19,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @SuperBuilder
 public class Location extends BaseEntity<Integer> {
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String city;
-    @Column
+    @Column(nullable = false)
     private String street;
 }
