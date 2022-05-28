@@ -1,21 +1,26 @@
 package org.stadium.config;
 
 
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.stadium.controller.EmailController;
+import org.stadium.service.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @AutoConfigureMockMvc(addFilters = false)
-@ActiveProfiles({"test"})
+@ActiveProfiles({"test", "services"})
 public abstract class BaseWebTest {
     @Autowired
     protected MockMvc mockMvc;
@@ -44,21 +49,21 @@ public abstract class BaseWebTest {
     }
 
     public void testPut(final String url, final Object id) throws Exception {
-        final MvcResult result = mockMvc.perform(put("/" + url))
+        final MvcResult result = mockMvc.perform(put("/api/" + url))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
     }
 
     public void testPost(final String baseUrl) throws Exception {
-        final MvcResult result = mockMvc.perform(post("/" + baseUrl))
+        final MvcResult result = mockMvc.perform(post("/api/" + baseUrl))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
     }
 
     public void testDelete(final String baseUrl) throws Exception {
-        final MvcResult result = mockMvc.perform(delete("/" + baseUrl))
+        final MvcResult result = mockMvc.perform(delete("/api/" + baseUrl))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();

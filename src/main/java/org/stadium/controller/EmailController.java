@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.stadium.controller.base.BaseController;
-import org.stadium.dto.EmailDto;
 import org.stadium.service.EmailService;
 
 @RestController
