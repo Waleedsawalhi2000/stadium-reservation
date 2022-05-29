@@ -14,7 +14,6 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class MediaDto extends BaseDto<Integer> {
-    @JsonIgnore
     private Byte[] image;
     private String name;
     private String uri;

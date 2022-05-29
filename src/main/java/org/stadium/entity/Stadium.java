@@ -25,14 +25,14 @@ public class Stadium extends BaseEntity<Integer> {
     @Column(nullable = false, unique = true)
     private String stadiumId;
     @JoinColumn(nullable = false, referencedColumnName = "id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Location location;
     @Column(nullable = false)
     private Integer price;
     @Column
     private String size;
     @JoinColumn(referencedColumnName = "id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Media image;
     @JoinTable(name = "admin_stadium")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
