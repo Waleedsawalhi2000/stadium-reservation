@@ -22,4 +22,6 @@ public interface CodeRepsotiroy extends AbstractJpaRepository<Code, Integer> {
     void deleteTicketByCode(@Param("code") final Integer code);
 
     Code findSchedulerByUserEmail(final String email);
+
+    Code findCodeByValue(final Integer value);
 }

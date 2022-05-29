@@ -19,4 +19,9 @@ public class ForgetPasswordController extends BaseController {
                                             @RequestParam final String email) {
         return doCall(() -> service.changePassword(code, password, email));
     }
+
+    @GetMapping
+    public ResponseEntity<?> isCodeExist(@PathVariable final Integer code) {
+        return doCall(() -> service.isCodeExist(code));
+    }
 }

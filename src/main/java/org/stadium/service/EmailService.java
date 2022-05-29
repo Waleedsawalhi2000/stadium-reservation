@@ -10,6 +10,7 @@ import org.stadium.dto.SimpleResponse;
 import org.stadium.dto.UserDto;
 import org.stadium.entity.Code;
 import org.stadium.entity.User;
+import org.stadium.repository.CodeRepsotiroy;
 
 import java.util.Objects;
 
@@ -24,6 +25,16 @@ public class EmailService {
 
     @Autowired
     private CodeService service;
+    @Autowired
+    private CodeRepsotiroy repsotiroy;
+
+    public SimpleResponse isCodeExist(final Integer code) {
+        if (repsotiroy.findCodeByValue(code) != null) {
+            return new SimpleResponse("true");
+        } else {
+            return new SimpleResponse("false");
+        }
+    }
 
     public void checkCodeId(final Integer codeId, final String email) {
         final CodeDto ticket = service.findCodeBy(email);
@@ -41,7 +52,6 @@ public class EmailService {
         checkCodeId(codeId, email);
         final UserDto user = userService.findByEmail(email);
         user.setPassword(password);
-        service.deleteByCode(codeId);
         return userService.update(user, user.getId());
     }
 
