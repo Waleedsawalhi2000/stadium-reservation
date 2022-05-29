@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -17,8 +19,8 @@ import java.sql.Timestamp;
 public class RequestDto extends BaseDto<Integer> {
     private UserDto user;
     private StadiumDto stadium;
-    private Timestamp started;
-    private Timestamp ended;
+    private String started;
+    private String ended;
     private Integer totalPrice;
     private String paymentMethod;
 }

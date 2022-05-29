@@ -16,4 +16,9 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseDto<ID extends Serializable> {
     private ID id;
+
+    public BaseDto setId(final ID id) {
+        this.id = id;
+        return this;
+    }
 }

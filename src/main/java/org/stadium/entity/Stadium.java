@@ -24,7 +24,7 @@ public class Stadium extends BaseEntity<Integer> {
     private String name;
     @Column(nullable = false, unique = true)
     private String stadiumId;
-    @JoinColumn(nullable = false, referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
     @Column(nullable = false)

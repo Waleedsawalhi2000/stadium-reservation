@@ -24,10 +24,10 @@ import java.net.URLEncoder;
 @SuperBuilder
 public class Media extends BaseEntity<Integer> {
     @Lob
-    @Column(nullable = false)
+    @Column
     @JsonIgnore
     private Byte[] image;
-    @Column(nullable = false)
+    @Column
     private String name;
     @Transient
     private String uri;
