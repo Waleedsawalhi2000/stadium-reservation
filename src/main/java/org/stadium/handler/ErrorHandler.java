@@ -14,8 +14,6 @@ public class ErrorHandler {
         return ErrorResponseDto
                 .builder()
                 .response(exception.getMessage())
-                .uri(request.getDescription(false))
-                .error(exception.toString())
                 .build();
     }
 }
