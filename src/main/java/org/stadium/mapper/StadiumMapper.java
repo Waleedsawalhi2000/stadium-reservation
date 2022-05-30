@@ -26,6 +26,8 @@ public class StadiumMapper extends AbstractMapper<Stadium, StadiumDto> {
                 .size(stadiumDto.getSize())
                 .admin(userMapper.toEntity(stadiumDto.getAdmin()))
                 .requests(requestMapper.toEntities(stadiumDto.getRequests()))
+                .phoneNumber(stadiumDto.getPhoneNumber())
+                .description(stadiumDto.getDescription())
                 .build();
     }
 
@@ -42,6 +44,8 @@ public class StadiumMapper extends AbstractMapper<Stadium, StadiumDto> {
                 .size(stadium.getSize())
                 .admin(userMapper.toDto(stadium.getAdmin().setStadiums(null).setRequests(null)))
                 .requests(requestMapper.toDtos(stadium.getRequests().stream().map(request -> request.setStadium(null)).collect(Collectors.toList())))
+                .phoneNumber(stadium.getPhoneNumber())
+                .description(stadium.getDescription())
                 .build();
     }
 }

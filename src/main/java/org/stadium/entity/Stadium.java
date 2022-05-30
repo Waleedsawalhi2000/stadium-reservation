@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "stadium"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"stadiumId", "name"})}*/)
+@Table(name = "stadium")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -40,4 +40,8 @@ public class Stadium extends BaseEntity<Integer> {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "stadium")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Request> requests = new ArrayList<>();
+    @Column(nullable = false)
+    private String phoneNumber;
+    @Column
+    private String description;
 }

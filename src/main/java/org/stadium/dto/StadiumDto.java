@@ -23,4 +23,6 @@ public class StadiumDto extends BaseDto<Integer> {
     private UserDto admin;
     private String stadiumId;
     private List<RequestDto> requests;
+    private String phoneNumber;
+    private String description;
 }
