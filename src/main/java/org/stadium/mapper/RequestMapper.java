@@ -16,6 +16,7 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .started(requestDto.getStarted())
                 .ended(requestDto.getEnded())
                 .paymentMethod(requestDto.getPaymentMethod())
+                .status(requestDto.getStatus())
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .started(request.getStarted())
                 .ended(request.getEnded())
                 .paymentMethod(request.getPaymentMethod())
+                .status(request.getStatus())
                 .build();
     }
 }

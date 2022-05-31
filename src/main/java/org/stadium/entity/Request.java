@@ -37,10 +37,5 @@ public class Request extends BaseEntity<Integer> {
     private String ended;
     @Column
     private String paymentMethod;
-
-
-    public Request setStadium(final Stadium  stadium) {
-        this.stadium = stadium;
-        return this;
-    }
+    private String status;
 }

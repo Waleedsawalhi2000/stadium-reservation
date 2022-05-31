@@ -23,4 +23,5 @@ public class RequestDto extends BaseDto<Integer> {
     private String ended;
     private Integer totalPrice;
     private String paymentMethod;
+    private String status;
 }
