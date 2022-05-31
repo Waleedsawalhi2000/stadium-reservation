@@ -14,8 +14,10 @@ public interface StadiumRepository extends AbstractJpaRepository<Stadium, Intege
             " WHERE (((:location IS NULL ) OR (lower(s.location.name) like concat('%', lower(:location),'%')))" +
             " OR ((:location IS NULL ) OR (lower(s.location.city) like concat('%', lower(:location),'%')))" +
             " OR ((:location IS NULL ) OR (lower(s.location.street) like concat('%', lower(:location),'%'))))" +
+            " AND ((:name IS NULL ) OR (lower(s.name) like concat('%', lower(:name),'%')))" +
             " AND (s.price between :minPrice AND :maxPrice) ")
     List<Stadium> findAll(@Param("location") final String location,
                           @Param("minPrice") final Integer minPrice,
-                          @Param("maxPrice") final Integer maxPrice);
+                          @Param("maxPrice") final Integer maxPrice,
+                          @Param("name") final String name);
 }

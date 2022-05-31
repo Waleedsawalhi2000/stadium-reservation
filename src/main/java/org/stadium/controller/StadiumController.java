@@ -15,10 +15,11 @@ public class StadiumController extends BaseController {
     private final StadiumService service;
 
     @GetMapping
-    public ResponseEntity<?> getStadiums(@RequestParam(required = false) final String location,
+    public ResponseEntity<?> getStadiums(@RequestParam(required = false) final String searchKey,
                                          @RequestParam(required = false) final Integer minPrice,
-                                         @RequestParam (required = false) final Integer maxPrice) {
-        return doCall(() -> service.findAll(location, minPrice, maxPrice));
+                                         @RequestParam(required = false) final Integer maxPrice,
+                                         @RequestParam(required = false) final String name) {
+        return doCall(() -> service.findAll(searchKey, minPrice, maxPrice, name));
     }
 
     @GetMapping("/{id}")

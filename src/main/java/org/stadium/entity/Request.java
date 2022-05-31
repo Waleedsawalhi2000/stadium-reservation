@@ -38,4 +38,10 @@ public class Request extends BaseEntity<Integer> {
     @Column
     private String paymentMethod;
     private String status;
+
+
+    public Request setStadium(final Stadium  stadium) {
+        this.stadium = stadium;
+        return this;
+    }
 }

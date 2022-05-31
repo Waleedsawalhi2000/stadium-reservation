@@ -32,10 +32,11 @@ public class StadiumService extends AbstractService<Stadium, StadiumDto, Integer
 
     public List<StadiumDto> findAll(final String location,
                                     final Integer minPrice,
-                                    final Integer maxPrice) {
+                                    final Integer maxPrice,
+                                    final String name) {
         final Integer max = maxPrice != null ? maxPrice : Integer.MAX_VALUE;
         final Integer min = minPrice != null ? minPrice : 0;
-        return mapper.toDtos(repository.findAll(location, min, max));
+        return mapper.toDtos(repository.findAll(location, min, max, name));
     }
 
     public Stadium create(final StadiumDto dto) {
