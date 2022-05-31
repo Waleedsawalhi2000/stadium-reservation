@@ -11,9 +11,7 @@ import java.util.List;
 @Repository
 public interface StadiumRepository extends AbstractJpaRepository<Stadium, Integer> {
     @Query("SELECT s FROM Stadium AS s" +
-            " WHERE (((:location IS NULL ) OR (lower(s.location.name) like concat('%', lower(:location),'%')))" +
-            " OR ((:location IS NULL ) OR (lower(s.location.city) like concat('%', lower(:location),'%')))" +
-            " OR ((:location IS NULL ) OR (lower(s.location.street) like concat('%', lower(:location),'%'))))" +
+            " WHERE ((:location IS NULL ) OR (lower(s.location.name) like concat('%', lower(:location),'%')) OR (lower(s.location.city) like concat('%', lower(:location),'%')) OR (lower(s.location.street) like concat('%', lower(:location),'%')))" +
             " AND ((:name IS NULL ) OR (lower(s.name) like concat('%', lower(:name),'%')))" +
             " AND (s.price between :minPrice AND :maxPrice) ")
     List<Stadium> findAll(@Param("location") final String location,
