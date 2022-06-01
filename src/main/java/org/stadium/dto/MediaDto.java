@@ -17,4 +17,9 @@ public class MediaDto extends BaseDto<Integer> {
     private Byte[] image;
     private String name;
     private String uri;
+
+    public MediaDto setId(final Integer id) {
+        super.setId(id);
+        return this;
+    }
 }

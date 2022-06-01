@@ -45,4 +45,11 @@ public class StadiumService extends AbstractService<Stadium, StadiumDto, Integer
         locationRepository.save(new LocationMapper().toEntity((LocationDto) dto.getLocation().setId(null)));
         return repository.save(mapper.toEntity(dto));
     }
+
+    public Stadium update(final StadiumDto dto,
+                          final Integer id) {
+        mediaRepository.save(new MediaMapper().toEntity(dto.getImage().getId() != null ? dto.getImage() : dto.getImage().setId(null)));
+        locationRepository.save(new LocationMapper().toEntity(dto.getLocation().getId() != null ? dto.getLocation() : dto.getLocation().setId(null)));
+        return repository.save(mapper.toEntity(dto));
+    }
 }
