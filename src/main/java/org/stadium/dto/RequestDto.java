@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -19,9 +19,29 @@ import java.time.LocalDateTime;
 public class RequestDto extends BaseDto<Integer> {
     private UserDto user;
     private StadiumDto stadium;
-    private String started;
-    private String ended;
+    private LocalDate date;
+    @Min(value = 0, message = "This value must between 0 and 23")
+    @Max(value = 23, message = "This value must between 0 and 23")
+    private Integer started;
+    @Min(value = 0, message = "This value must between 0 and 23")
+    @Max(value = 23, message = "This value must between 0 and 23")
+    private Integer ended;
     private Integer totalPrice;
     private String paymentMethod;
     private String status;
+
+
+    public Integer getStarted() {
+        if (started >= 0 && started <= 23) {
+            return started;
+        }
+        throw new IllegalStateException("This value isn't accepted");
+    }
+
+    public Integer getEnded() {
+        if (ended >= 0 && ended <= 23) {
+            return ended;
+        }
+        throw new IllegalStateException("This value isn't accepted");
+    }
 }

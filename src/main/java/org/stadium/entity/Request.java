@@ -1,20 +1,16 @@
 package org.stadium.entity;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.stadium.dto.PaymentMethod;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -31,12 +27,13 @@ public class Request extends BaseEntity<Integer> {
     @JoinTable(name = "stadium_request")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Stadium stadium;
-    @Column
-    private String started;
-    @Column
-    private String ended;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime started;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime ended;
     @Column
     private String paymentMethod;
+    @Column
     private String status;
 
 

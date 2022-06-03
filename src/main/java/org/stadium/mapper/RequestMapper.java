@@ -4,6 +4,10 @@ package org.stadium.mapper;
 import org.stadium.dto.RequestDto;
 import org.stadium.entity.Request;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 
 public class RequestMapper extends AbstractMapper<Request, RequestDto> {
     @Override
@@ -13,8 +17,8 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .id(requestDto.getId())
                 .user(new UserMapper().toEntity(requestDto.getUser()))
                 .stadium(new StadiumMapper().toEntity(requestDto.getStadium()))
-                .started(requestDto.getStarted())
-                .ended(requestDto.getEnded())
+                .started(getLocalDateTime(requestDto.getDate(), requestDto.getStarted()))
+                .ended(getLocalDateTime(requestDto.getDate(), requestDto.getEnded()))
                 .paymentMethod(requestDto.getPaymentMethod())
                 .status(requestDto.getStatus())
                 .build();
@@ -27,10 +31,16 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .id(request.getId())
                 .user(new UserMapper().toDto(request.getUser().setStadiums(null).setRequests(null)))
                 .stadium(new StadiumMapper().toDto(request.getStadium()))
-                .started(request.getStarted())
-                .ended(request.getEnded())
+                .started(request.getStarted().getHour())
+                .ended(request.getEnded().getHour())
+                .date(request.getStarted().toLocalDate())
                 .paymentMethod(request.getPaymentMethod())
                 .status(request.getStatus())
                 .build();
+    }
+
+
+    public LocalDateTime getLocalDateTime(final LocalDate date, final Integer hour) {
+        return LocalDateTime.of(date, LocalTime.of(hour, 0));
     }
 }
