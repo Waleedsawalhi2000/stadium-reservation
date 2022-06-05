@@ -36,11 +36,4 @@ public class RequestDto extends BaseDto<Integer> {
         }
         throw new IllegalStateException("This value isn't accepted");
     }
-
-    public Integer getEnded() {
-        if (ended >= 0 && ended <= 23) {
-            return ended;
-        }
-        throw new IllegalStateException("This value isn't accepted");
-    }
 }

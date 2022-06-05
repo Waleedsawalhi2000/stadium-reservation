@@ -36,6 +36,18 @@ public class UserService extends AbstractService<User, UserDto, Integer> {
         return super.create(dto);
     }
 
+    public boolean changePassword(final String oldPassword,
+                               final String newPassword) {
+        final UserDto user = getLoggedInUser();
+        if (PasswordUtil.compare(oldPassword, user.getPassword())) {
+            user.setPassword(newPassword);
+            update(user, user.getId());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public User update(final UserDto dto,
                        final Integer id) {

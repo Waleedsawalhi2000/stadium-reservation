@@ -19,7 +19,7 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .user(new UserMapper().toEntity(requestDto.getUser()))
                 .stadium(new StadiumMapper().toEntity(requestDto.getStadium()))
                 .started(getLocalDateTime(requestDto.getDate(), requestDto.getStarted()))
-                .ended(requestDto.getEnded() >= 23 ? getLocalDateTime(requestDto.getDate(), requestDto.getEnded()) : getLocalDateTime(requestDto.getDate().plusDays(1), requestDto.getEnded() - requestDto.getStarted()))
+                .ended(requestDto.getEnded() <= 23 ? getLocalDateTime(requestDto.getDate(), requestDto.getEnded()) : getLocalDateTime(requestDto.getDate().plusDays(1), requestDto.getEnded() - requestDto.getStarted() - 1))
                 .paymentMethod(requestDto.getPaymentMethod())
                 .status(requestDto.getStatus())
                 .totalPrice(requestDto.getTotalPrice())
@@ -38,6 +38,7 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .date(request.getStarted().toLocalDate())
                 .paymentMethod(request.getPaymentMethod())
                 .status(request.getStatus())
+                .totalPrice(request.getTotalPrice())
                 .build();
     }
 
