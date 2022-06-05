@@ -1,10 +1,8 @@
 package org.stadium.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @SuperBuilder
 public class StadiumDto extends BaseDto<Integer> {
     private String name;
@@ -22,6 +22,7 @@ public class StadiumDto extends BaseDto<Integer> {
     private MediaDto image;
     private UserDto admin;
     private String stadiumId;
+    @JsonIgnore
     private List<RequestDto> requests;
     private String phoneNumber;
     private String description;

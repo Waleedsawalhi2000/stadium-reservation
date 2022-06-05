@@ -1,7 +1,9 @@
 package org.stadium.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
@@ -17,6 +19,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @SuperBuilder
 public class User extends BaseEntity<Integer> {
     @Column(nullable = false, unique = true)
@@ -40,9 +44,11 @@ public class User extends BaseEntity<Integer> {
     private Boolean verified;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "admin")
     @Fetch(value = FetchMode.SUBSELECT)
+    @JsonIgnore
     private List<Stadium> stadiums = new ArrayList<>();
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "user")
     @Fetch(value = FetchMode.SUBSELECT)
+    @JsonIgnore
     private List<Request> requests = new ArrayList<>();
 
 

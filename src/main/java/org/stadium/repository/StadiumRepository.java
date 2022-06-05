@@ -18,4 +18,8 @@ public interface StadiumRepository extends AbstractJpaRepository<Stadium, Intege
                           @Param("minPrice") final Integer minPrice,
                           @Param("maxPrice") final Integer maxPrice,
                           @Param("name") final String name);
+
+    @Query("SELECT s FROM Stadium AS s" +
+            " WHERE s.admin.username=:username")
+    List<Stadium> findAll(@Param("username") final String username);
 }

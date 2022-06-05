@@ -1,5 +1,6 @@
 package org.stadium.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,6 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
+@ToString
+@EqualsAndHashCode
 @SuperBuilder
 public class UserDto extends BaseDto<Integer> {
     private String email;
@@ -21,6 +24,8 @@ public class UserDto extends BaseDto<Integer> {
     private String firstname;
     private String lastname;
     private Boolean verified;
+    @JsonIgnore
     private List<StadiumDto> stadiums;
+    @JsonIgnore
     private List<RequestDto> requests;
 }

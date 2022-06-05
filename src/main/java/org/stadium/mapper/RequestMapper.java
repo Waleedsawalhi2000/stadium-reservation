@@ -3,6 +3,7 @@ package org.stadium.mapper;
 
 import org.stadium.dto.RequestDto;
 import org.stadium.entity.Request;
+import org.stadium.entity.Stadium;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class RequestMapper extends AbstractMapper<Request, RequestDto> {
                 .ended(getLocalDateTime(requestDto.getDate(), requestDto.getEnded()))
                 .paymentMethod(requestDto.getPaymentMethod())
                 .status(requestDto.getStatus())
+                .totalPrice(requestDto.getTotalPrice())
                 .build();
     }
 

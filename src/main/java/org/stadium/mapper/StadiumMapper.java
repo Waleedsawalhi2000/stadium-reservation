@@ -42,8 +42,7 @@ public class StadiumMapper extends AbstractMapper<Stadium, StadiumDto> {
                 .stadiumId(stadium.getStadiumId())
                 .location(locationMapper.toDto(stadium.getLocation()))
                 .size(stadium.getSize())
-                .admin(userMapper.toDto(stadium.getAdmin().setStadiums(null).setRequests(null)))
-                .requests(requestMapper.toDtos(stadium.getRequests().stream().map(request -> request.setStadium(null)).collect(Collectors.toList())))
+//                .admin(userMapper.toDto(stadium.getAdmin().setStadiums(null).setRequests(null)))
                 .phoneNumber(stadium.getPhoneNumber())
                 .description(stadium.getDescription())
                 .build();

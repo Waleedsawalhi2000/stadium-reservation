@@ -1,9 +1,7 @@
 package org.stadium.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -18,6 +16,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @SuperBuilder
 public class Stadium extends BaseEntity<Integer> {
     @Column(nullable = false, unique = true)
@@ -39,6 +39,7 @@ public class Stadium extends BaseEntity<Integer> {
     private User admin;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, mappedBy = "stadium")
     @Fetch(value = FetchMode.SUBSELECT)
+    @JsonIgnore
     private List<Request> requests = new ArrayList<>();
     @Column(nullable = false)
     private String phoneNumber;

@@ -14,6 +14,11 @@ import org.stadium.service.StadiumService;
 public class StadiumController extends BaseController {
     private final StadiumService service;
 
+    @GetMapping("/admin/{username}")
+    public ResponseEntity<?> getStadiumsByAdmin(@PathVariable final String username) {
+        return doCall(() -> service.findAll(username));
+    }
+
     @GetMapping
     public ResponseEntity<?> getStadiums(@RequestParam(required = false) final String searchKey,
                                          @RequestParam(required = false) final Integer minPrice,

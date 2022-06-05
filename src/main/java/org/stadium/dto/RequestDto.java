@@ -1,10 +1,7 @@
 package org.stadium.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Max;
@@ -15,6 +12,8 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @SuperBuilder
 public class RequestDto extends BaseDto<Integer> {
     private UserDto user;

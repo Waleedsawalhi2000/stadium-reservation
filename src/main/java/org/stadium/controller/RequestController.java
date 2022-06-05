@@ -14,9 +14,15 @@ import org.stadium.service.RequestService;
 public class RequestController extends BaseController {
     private final RequestService service;
 
+    @GetMapping("/admin/{username}")
+    public ResponseEntity<?> getRequestsByUsernameAndStatus(@PathVariable final String username,
+                                                            @RequestParam final String status) {
+        return doCall(() -> service.findAll(username, status));
+    }
+
     @GetMapping
-    public ResponseEntity<?> getRequests() {
-        return doCall(service::findAll);
+    public ResponseEntity<?> getRequests(@RequestParam final String username) {
+        return doCall(() -> service.findAll(username));
     }
 
     @GetMapping("/{id}")

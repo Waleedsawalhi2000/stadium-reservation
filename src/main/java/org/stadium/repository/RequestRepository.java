@@ -10,4 +10,10 @@ import java.util.List;
 
 @Repository
 public interface RequestRepository extends AbstractJpaRepository<Request, Integer> {
+    @Query(value = "select request from Request AS request where request.user.username=:username")
+    List<Request> findAll(@Param("username") final String username);
+
+    @Query(value = "select request from Request as request where (request.stadium.admin.username=:username AND request.status=:status)")
+    List<Request> findAll(@Param("username") final String username,
+                          @Param("status") final String status);
 }

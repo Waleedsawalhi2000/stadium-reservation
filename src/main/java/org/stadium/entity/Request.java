@@ -22,10 +22,10 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class Request extends BaseEntity<Integer> {
     @JoinTable(name = "user_request")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private User user;
     @JoinTable(name = "stadium_request")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Stadium stadium;
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime started;
@@ -35,10 +35,19 @@ public class Request extends BaseEntity<Integer> {
     private String paymentMethod;
     @Column
     private String status;
+    @Column
+    private Integer totalPrice;
 
 
     public Request setStadium(final Stadium  stadium) {
         this.stadium = stadium;
         return this;
     }
+
+    public Request setUser(final User user) {
+        this.user = user;
+        return this;
+    }
+
+
 }
